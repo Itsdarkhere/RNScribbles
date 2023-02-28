@@ -1,26 +1,26 @@
 import React from 'react'
-import { View, StyleSheet, Animated } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import { SafeAreaView } from 'react-native'
-import { SpinnerSVG } from './SVG/SpinnerSVG'
-// import { Keyframe } from 'react-native-reanimated';
+import LottieView from 'lottie-react-native';
+import lottie from ".././assets/spinner.json";
 
 const ResultScreen = () => {
-  // const keyframe = new Keyframe({
-  //   from: {
-  //     transform: [{ rotate: '0deg' }],
-  //   },
-  //   to: {
-  //     transform: [{ rotate: '360deg' }],
-  //   },
-  // })
+
 
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={styles.container}>
         <View style={styles.render}>
-          {/* <Animated.View>
-            <SpinnerSVG />
-          </Animated.View> */}
+          <LottieView
+            autoPlay
+            style={{
+              width: 60,
+              height: 60,
+              backgroundColor: 'transparent',
+            }}
+            // Find more Lottie files at https://lottiefiles.com/featured
+            source={lottie}
+          />
         </View>
       </View>
     </SafeAreaView>
@@ -41,6 +41,9 @@ const styles = StyleSheet.create({
     height: 375,
     width: '100%',
     borderRadius: 22,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   }
 });
 
