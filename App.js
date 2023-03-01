@@ -3,8 +3,8 @@ import { Provider } from "react-redux";
 import { store } from './store';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import ResultScreen from './components/ResultScreen';
-import DrawScreen from './components/DrawScreen';
+import ResultScreen from './screens/ResultScreen';
+import DrawScreen from './screens/DrawScreen';
 
 export default function App() {
   const Stack = createStackNavigator();

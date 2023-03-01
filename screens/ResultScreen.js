@@ -5,7 +5,7 @@ import Swiper from 'react-native-swiper'
 import { useSelector } from 'react-redux'
 import { selectLoading } from '../slices/renderSlice'
 import { selectRenders } from '../slices/renderSlice'
-import { Render } from './Render'
+import { Render } from '../components/Render'
 
 const ResultScreen = () => {
 

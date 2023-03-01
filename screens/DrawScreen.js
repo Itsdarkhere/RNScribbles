@@ -3,11 +3,11 @@ import React, { useRef, useState } from 'react'
 import { SafeAreaView, View, StyleSheet, TouchableOpacity, Text } from 'react-native'
 import { SketchCanvas } from 'rn-perfect-sketch-canvas';
 import {Slider} from '@miblanchard/react-native-slider';
-import { TrashSVG } from './SVG/TrashSVG';
-import { UndosSVG } from './SVG/UndoSVG';
-import { IllustrateSVG } from './SVG/IllustrateSVG';
+import { TrashSVG } from '../components/SVG/TrashSVG';
+import { UndosSVG } from '../components/SVG/UndoSVG';
+import { IllustrateSVG } from '../components/SVG/IllustrateSVG';
 import { useDispatch } from 'react-redux';
-import { setLoading, setRenders, overrideRender, removeRender } from "../slices/renderSlice";
+import { setRenders, overrideRender, removeRender } from "../slices/renderSlice";
 import { captureRef } from "react-native-view-shot";
 
 const DrawScreen = () => {
@@ -160,8 +160,16 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 100,
         fontWeight: 'bold',
-        height: 50,
-        width: 268,
+        height: 60,
+        width: 321.6,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
     },
     buttonText: {
         color: 'white',
