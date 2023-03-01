@@ -7,7 +7,7 @@ import { TrashSVG } from './SVG/TrashSVG';
 import { UndosSVG } from './SVG/UndoSVG';
 import { IllustrateSVG } from './SVG/IllustrateSVG';
 import { useDispatch } from 'react-redux';
-import { setLoading, setRenders } from "../slices/renderSlice";
+import { setLoading, setRenders, overrideRender, removeRender } from "../slices/renderSlice";
 import { captureRef } from "react-native-view-shot";
 
 const DrawScreen = () => {
@@ -33,8 +33,9 @@ const DrawScreen = () => {
   }
 
   const illustrate = async () => {
-    dispatch(setLoading(true));
-    // Finally navigate to new result screen
+    // Adds render so render shows loading
+    dispatch(setRenders(null));
+    // Navigate to new result screen
     navigation.navigate('Result');
     // Add image to this request
     const image = await getImage();
@@ -50,8 +51,7 @@ const DrawScreen = () => {
     
     let prediction = await response.json();
     if (response.status !== 201) {
-      console.log("Error:", prediction.detail);
-      dispatch(setLoading(false));
+      dispatch(removeRender(0));
       return;
     }
     setPrediction(prediction);
@@ -66,15 +66,13 @@ const DrawScreen = () => {
       prediction = await response.json();
       console.log(prediction);
       if (response.status !== 200) {
-        console.log("Error:", prediction.detail);
-        dispatch(setLoading(false));
+        dispatch(removeRender(0));
         return;
       }
       setPrediction(prediction);
     }
     // After completion, set the image
-    dispatch(setRenders(prediction.output[1]));
-    dispatch(setLoading(false));
+    dispatch(overrideRender({index: 0, image: prediction.output[1]}));
   }
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
@@ -144,6 +142,14 @@ const styles = StyleSheet.create({
         height: 375,
         width: '100%',
         borderRadius: 22,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
     },
     button:  {
         marginTop: 20,

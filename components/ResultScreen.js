@@ -17,7 +17,6 @@ const ResultScreen = () => {
       <View style={styles.container}>
         <View style={styles.swiperContainer}>
           <Swiper height={375} horizontal={false} showsPagination={false} showsButtons={false} loop={false}>
-            {loading && <Render imageURL={null} /> }
             {renders.map((image, index) => {
               return (
                 <Render imageURL={image} key={index} />
