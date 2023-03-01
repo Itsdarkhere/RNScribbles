@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import baseSlice from "./slices/baseSlice";
+import renderSlice from "./slices/renderSlice";
 
 export const store = configureStore({
     reducer: {
-        base: baseSlice
+        render: renderSlice
     }
 })
